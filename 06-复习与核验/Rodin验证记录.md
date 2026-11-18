@@ -16,10 +16,10 @@
 |---|---:|---:|---:|
 | L1_Bank | 32 | 26 | 32 |
 | L1_Search | 16 | 5 | 16 |
-| L2_Bridge | 246 | 174 | 244 |
+| L2_Bridge | 246 | 174 | 246 |
 | L3_Patterns | 125 | 118 | 125 |
 | L3_Press | 67 | 64 | 67 |
-| **合计** | **486** | **387** | **484** |
+| **合计** | **486** | **387** | **486** |
 
 ## 到机器中定位
 
@@ -41,8 +41,8 @@
 | L2_Bridge | `C3_Sensors.buc` | 4 / 4 | 4 / 4 |
 | L2_Bridge | `M0_Capacity.bum` | 2 / 7 | 7 / 7 |
 | L2_Bridge | `M1_Bridge.bum` | 12 / 27 | 27 / 27 |
-| L2_Bridge | `M2_Lights.bum` | 45 / 53 | 52 / 53 |
-| L2_Bridge | `M3_Sensors.bum` | 111 / 155 | 154 / 155 |
+| L2_Bridge | `M2_Lights.bum` | 45 / 53 | 53 / 53 |
+| L2_Bridge | `M3_Sensors.bum` | 111 / 155 | 155 / 155 |
 | L3_Patterns | `Pair0.bum` | 38 / 40 | 40 / 40 |
 | L3_Patterns | `Pair1.bum` | 20 / 20 | 20 / 20 |
 | L3_Patterns | `Pair2.bum` | 31 / 31 | 31 / 31 |
@@ -65,8 +65,7 @@
 
 ## 进阶版剩余目标
 
-- **L2_Bridge / M2_Lights.bum**　`thm2_dlf/THM`
-- **L2_Bridge / M3_Sensors.bum**　`thm3_dlf/THM`
+本版本的正式工程中，Rodin 生成的全部证明义务都已消解。
 
 ## 反例工程单独计数
 

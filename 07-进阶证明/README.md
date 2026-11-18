@@ -6,6 +6,6 @@
 2. 选择对应功能项，完成安装向导并重启。可在 **About Rodin Platform → Installation Details** 查看已装的插件。本次核验使用 Atelier B Provers 2.4.1。
 3. 选 **File → Switch Workspace → Other…**，使用新的空目录。进阶版与普通版采用相同工程名，分开工作区可以并排保留两套练习记录。
 4. 选择 **File → Import… → General → Existing Projects into Workspace → Select archive file**，选本目录的 `Rodin-Projects-AtelierB.zip`，勾选工程后完成导入。
-5. 打开 **L2_Bridge → M0_Capacity → Proof Obligations**，该机的 7 项义务均有已完成证明。双击 `ML_out/inv0_2/INV`，从 Proof Tree 查看旧状态、进桥守卫和动作后的上界如何联系。机器与上下文的逐项结果见[构建与证明记录](../06-复习与核验/Rodin验证记录.md)。
+5. 导入本包后，五套正式工程合计 486 项义务均有已完成证明。打开 **L2_Bridge → M0_Capacity → Proof Obligations**，该机的 7 项义务均有已完成证明。双击 `ML_out/inv0_2/INV`，从 Proof Tree 查看旧状态、进桥守卫和动作后的上界如何联系。机器与上下文的逐项结果见[构建与证明记录](../06-复习与核验/Rodin验证记录.md)。
 
 ZIP 包内保存的是课程模型与证明。插件由 Rodin 的更新向导从其发布方安装。
