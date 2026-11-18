@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.eventb.core.machineFile version="5" org.eventb.core.configuration="org.eventb.core.fwd">
+  <org.eventb.core.seesContext name="seesContext1" org.eventb.core.target="C0_Capacity" />
+  <org.eventb.core.variable name="variable1" org.eventb.core.identifier="n" />
+  <org.eventb.core.invariant name="invariant1" org.eventb.core.label="inv0_1" org.eventb.core.predicate="n ∈ ℕ" org.eventb.core.theorem="false" />
+  <org.eventb.core.invariant name="invariant2" org.eventb.core.label="inv0_2" org.eventb.core.predicate="n ≤ d" org.eventb.core.theorem="false" />
+  <org.eventb.core.invariant name="invariant3" org.eventb.core.label="thm0_dlf" org.eventb.core.predicate="n &lt; d ∨ 0 &lt; n" org.eventb.core.theorem="true" />
+  <org.eventb.core.event name="event1" org.eventb.core.label="INITIALISATION" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="n ≔ 0" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event2" org.eventb.core.label="ML_out" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="n &lt; d" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="n ≔ n + 1" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event3" org.eventb.core.label="ML_in" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="0 &lt; n" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="n ≔ n − 1" />
+  </org.eventb.core.event>
+</org.eventb.core.machineFile>

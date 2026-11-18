@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.eventb.core.contextFile version="3" org.eventb.core.configuration="org.eventb.core.fwd">
+  <org.eventb.core.extendsContext name="extendsContext1" org.eventb.core.target="C2_Lights" />
+  <org.eventb.core.carrierSet name="carrierSet1" org.eventb.core.identifier="SENSOR" />
+  <org.eventb.core.constant name="constant1" org.eventb.core.identifier="on" />
+  <org.eventb.core.constant name="constant2" org.eventb.core.identifier="off" />
+  <org.eventb.core.constant name="constant3" org.eventb.core.identifier="phase" />
+  <org.eventb.core.axiom name="axiom1" org.eventb.core.label="axm3_1" org.eventb.core.predicate="SENSOR = {on, off}" org.eventb.core.theorem="false" />
+  <org.eventb.core.axiom name="axiom2" org.eventb.core.label="axm3_2" org.eventb.core.predicate="on ≠ off" org.eventb.core.theorem="false" />
+  <org.eventb.core.axiom name="axiom3" org.eventb.core.label="phase_type" org.eventb.core.predicate="phase ∈ (SENSOR × BOOL) → ℕ" org.eventb.core.theorem="false" />
+  <org.eventb.core.axiom name="axiom4" org.eventb.core.label="phase_idle" org.eventb.core.predicate="phase(off ↦ FALSE) = 2" org.eventb.core.theorem="false" />
+  <org.eventb.core.axiom name="axiom5" org.eventb.core.label="phase_active" org.eventb.core.predicate="phase(on ↦ FALSE) = 1" org.eventb.core.theorem="false" />
+  <org.eventb.core.axiom name="axiom6" org.eventb.core.label="phase_pending" org.eventb.core.predicate="phase(off ↦ TRUE) = 0" org.eventb.core.theorem="false" />
+  <org.eventb.core.axiom name="axiom7" org.eventb.core.label="phase_unused" org.eventb.core.predicate="phase(on ↦ TRUE) = 0" org.eventb.core.theorem="false" />
+</org.eventb.core.contextFile>

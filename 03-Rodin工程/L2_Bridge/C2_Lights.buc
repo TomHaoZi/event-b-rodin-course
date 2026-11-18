@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.eventb.core.contextFile version="3" org.eventb.core.configuration="org.eventb.core.fwd">
+  <org.eventb.core.extendsContext name="extendsContext1" org.eventb.core.target="C0_Capacity" />
+  <org.eventb.core.carrierSet name="carrierSet1" org.eventb.core.identifier="COLOR" />
+  <org.eventb.core.constant name="constant1" org.eventb.core.identifier="red" />
+  <org.eventb.core.constant name="constant2" org.eventb.core.identifier="green" />
+  <org.eventb.core.axiom name="axiom1" org.eventb.core.label="axm2_1" org.eventb.core.predicate="COLOR = {green, red}" org.eventb.core.theorem="false" />
+  <org.eventb.core.axiom name="axiom2" org.eventb.core.label="axm2_2" org.eventb.core.predicate="green ≠ red" org.eventb.core.theorem="false" />
+</org.eventb.core.contextFile>

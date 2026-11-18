@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.eventb.core.machineFile version="5" org.eventb.core.configuration="org.eventb.core.fwd">
+  <org.eventb.core.refinesMachine name="refinesMachine1" org.eventb.core.target="Press5" />
+  <org.eventb.core.seesContext name="seesContext1" org.eventb.core.target="DoorCtx" />
+  <org.eventb.core.variable name="variable1" org.eventb.core.identifier="motor_actuator" />
+  <org.eventb.core.variable name="variable2" org.eventb.core.identifier="motor_sensor" />
+  <org.eventb.core.variable name="variable3" org.eventb.core.identifier="start_motor_button" />
+  <org.eventb.core.variable name="variable4" org.eventb.core.identifier="start_motor_impulse" />
+  <org.eventb.core.variable name="variable5" org.eventb.core.identifier="stop_motor_button" />
+  <org.eventb.core.variable name="variable6" org.eventb.core.identifier="stop_motor_impulse" />
+  <org.eventb.core.variable name="variable7" org.eventb.core.identifier="clutch_actuator" />
+  <org.eventb.core.variable name="variable8" org.eventb.core.identifier="clutch_sensor" />
+  <org.eventb.core.variable name="variable9" org.eventb.core.identifier="door_actuator" />
+  <org.eventb.core.variable name="variable10" org.eventb.core.identifier="door_sensor" />
+  <org.eventb.core.variable name="variable11" org.eventb.core.identifier="m" />
+  <org.eventb.core.invariant name="invariant1" org.eventb.core.label="memory_type" org.eventb.core.predicate="m ∈ {0,1}" org.eventb.core.theorem="false" />
+  <org.eventb.core.invariant name="invariant2" org.eventb.core.label="open_memory" org.eventb.core.predicate="door_actuator = opened ⇒ m = 0" org.eventb.core.theorem="false" />
+  <org.eventb.core.event name="event1" org.eventb.core.label="INITIALISATION" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="motor_actuator ≔ stopped" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="act2" org.eventb.core.assignment="motor_sensor ≔ stopped" />
+    <org.eventb.core.action name="action3" org.eventb.core.label="act3" org.eventb.core.assignment="start_motor_button ≔ FALSE" />
+    <org.eventb.core.action name="action4" org.eventb.core.label="act4" org.eventb.core.assignment="start_motor_impulse ≔ FALSE" />
+    <org.eventb.core.action name="action5" org.eventb.core.label="act5" org.eventb.core.assignment="stop_motor_button ≔ FALSE" />
+    <org.eventb.core.action name="action6" org.eventb.core.label="act6" org.eventb.core.assignment="stop_motor_impulse ≔ FALSE" />
+    <org.eventb.core.action name="action7" org.eventb.core.label="act7" org.eventb.core.assignment="clutch_actuator ≔ disengaged" />
+    <org.eventb.core.action name="action8" org.eventb.core.label="act8" org.eventb.core.assignment="clutch_sensor ≔ disengaged" />
+    <org.eventb.core.action name="action9" org.eventb.core.label="act9" org.eventb.core.assignment="door_actuator ≔ opened" />
+    <org.eventb.core.action name="action10" org.eventb.core.label="act10" org.eventb.core.assignment="door_sensor ≔ opened" />
+    <org.eventb.core.action name="action11" org.eventb.core.label="act11" org.eventb.core.assignment="m ≔ 0" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event2" org.eventb.core.label="motor_start" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="motor_start" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="motor_sensor = stopped" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="motor_actuator = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="motor_sensor ≔ working" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event3" org.eventb.core.label="motor_stop" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="motor_stop" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="motor_sensor = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="motor_actuator = stopped" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="motor_sensor ≔ stopped" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event4" org.eventb.core.label="treat_push_start_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_push_start_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="start_motor_button = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="start_motor_impulse = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="grd3" org.eventb.core.predicate="motor_actuator = stopped" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard4" org.eventb.core.label="grd4" org.eventb.core.predicate="motor_sensor = stopped" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="motor_actuator ≔ working" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="act2" org.eventb.core.assignment="start_motor_impulse ≔ TRUE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event5" org.eventb.core.label="treat_push_start_motor_button_false" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_push_start_motor_button_false" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="start_motor_button = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="start_motor_impulse = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="grd3" org.eventb.core.predicate="¬(motor_actuator = stopped ∧ motor_sensor = stopped)" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="start_motor_impulse ≔ TRUE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event6" org.eventb.core.label="push_start_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="push_start_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="start_motor_button = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="start_motor_button ≔ TRUE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event7" org.eventb.core.label="release_start_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="release_start_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="start_motor_button = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="start_motor_button ≔ FALSE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event8" org.eventb.core.label="treat_release_start_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_release_start_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="start_motor_button = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="start_motor_impulse = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="start_motor_impulse ≔ FALSE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event9" org.eventb.core.label="treat_push_stop_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_push_stop_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="stop_motor_button = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="stop_motor_impulse = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="grd3" org.eventb.core.predicate="motor_actuator = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard4" org.eventb.core.label="grd4" org.eventb.core.predicate="motor_sensor = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard5" org.eventb.core.label="grd5" org.eventb.core.predicate="clutch_actuator = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard6" org.eventb.core.label="grd6" org.eventb.core.predicate="clutch_sensor = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard7" org.eventb.core.label="grd7" org.eventb.core.predicate="door_actuator = opened" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard8" org.eventb.core.label="grd8" org.eventb.core.predicate="door_sensor = opened" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="motor_actuator ≔ stopped" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="act2" org.eventb.core.assignment="stop_motor_impulse ≔ TRUE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event10" org.eventb.core.label="treat_push_stop_motor_button_false" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_push_stop_motor_button_false" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="stop_motor_button = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="stop_motor_impulse = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="grd3" org.eventb.core.predicate="¬(motor_actuator = working ∧ motor_sensor = working)" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="stop_motor_impulse ≔ TRUE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event11" org.eventb.core.label="push_stop_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="push_stop_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="stop_motor_button = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="stop_motor_button ≔ TRUE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event12" org.eventb.core.label="release_stop_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="release_stop_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="stop_motor_button = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="stop_motor_button ≔ FALSE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event13" org.eventb.core.label="treat_release_stop_motor_button" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_release_stop_motor_button" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="stop_motor_button = FALSE" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="stop_motor_impulse = TRUE" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="stop_motor_impulse ≔ FALSE" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event14" org.eventb.core.label="treat_start_clutch" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_start_clutch" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="clutch_actuator = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="clutch_sensor = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="grd3" org.eventb.core.predicate="motor_actuator = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard4" org.eventb.core.label="grd4" org.eventb.core.predicate="motor_sensor = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard5" org.eventb.core.label="grd5" org.eventb.core.predicate="door_actuator = closed" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard6" org.eventb.core.label="grd6" org.eventb.core.predicate="door_sensor = closed" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard7" org.eventb.core.label="grd7" org.eventb.core.predicate="m = 1" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="clutch_actuator ≔ engaged" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="act2" org.eventb.core.assignment="m ≔ 0" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event15" org.eventb.core.label="clutch_start" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="clutch_start" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="clutch_sensor = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="clutch_actuator = engaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="clutch_sensor ≔ engaged" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event16" org.eventb.core.label="treat_stop_clutch" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_stop_clutch" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="clutch_actuator = engaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="clutch_sensor = engaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="clutch_actuator ≔ disengaged" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event17" org.eventb.core.label="clutch_stop" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="clutch_stop" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="clutch_sensor = engaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="clutch_actuator = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="clutch_sensor ≔ disengaged" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event18" org.eventb.core.label="treat_close_door" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_close_door" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="door_actuator = opened" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="door_sensor = opened" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="grd3" org.eventb.core.predicate="motor_actuator = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard4" org.eventb.core.label="grd4" org.eventb.core.predicate="motor_sensor = working" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="door_actuator ≔ closed" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="act2" org.eventb.core.assignment="m ≔ 1" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event19" org.eventb.core.label="door_close" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="door_close" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="door_sensor = opened" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="door_actuator = closed" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="door_sensor ≔ closed" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event20" org.eventb.core.label="treat_open_door" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="treat_open_door" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="door_actuator = closed" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="door_sensor = closed" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="grd3" org.eventb.core.predicate="clutch_actuator = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard4" org.eventb.core.label="grd4" org.eventb.core.predicate="clutch_sensor = disengaged" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard5" org.eventb.core.label="grd5" org.eventb.core.predicate="m = 0" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="door_actuator ≔ opened" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event21" org.eventb.core.label="door_open" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="door_open" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="grd1" org.eventb.core.predicate="door_sensor = closed" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="grd2" org.eventb.core.predicate="door_actuator = opened" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="act1" org.eventb.core.assignment="door_sensor ≔ opened" />
+  </org.eventb.core.event>
+</org.eventb.core.machineFile>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.eventb.core.contextFile version="3" org.eventb.core.configuration="org.eventb.core.fwd">
+  <org.eventb.core.carrierSet name="carrierSet1" org.eventb.core.identifier="STATUS" />
+  <org.eventb.core.constant name="constant1" org.eventb.core.identifier="stopped" />
+  <org.eventb.core.constant name="constant2" org.eventb.core.identifier="working" />
+  <org.eventb.core.axiom name="axiom1" org.eventb.core.label="motor_states" org.eventb.core.predicate="partition(STATUS, {stopped}, {working})" org.eventb.core.theorem="false" />
+</org.eventb.core.contextFile>

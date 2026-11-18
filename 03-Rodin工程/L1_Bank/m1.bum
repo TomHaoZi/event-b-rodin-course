@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.eventb.core.machineFile version="5" org.eventb.core.configuration="org.eventb.core.fwd">
+  <org.eventb.core.refinesMachine name="refinesMachine1" org.eventb.core.target="m0" />
+  <org.eventb.core.seesContext name="seesContext1" org.eventb.core.target="c1" />
+  <org.eventb.core.variable name="variable1" org.eventb.core.identifier="account" />
+  <org.eventb.core.variable name="variable2" org.eventb.core.identifier="balance" />
+  <org.eventb.core.variable name="variable3" org.eventb.core.identifier="owner" />
+  <org.eventb.core.variable name="variable4" org.eventb.core.identifier="trans" />
+  <org.eventb.core.variable name="variable5" org.eventb.core.identifier="a_of_trans" />
+  <org.eventb.core.variable name="variable6" org.eventb.core.identifier="q_of_trans" />
+  <org.eventb.core.invariant name="invariant1" org.eventb.core.label="inv1" org.eventb.core.predicate="trans ⊆ T" org.eventb.core.theorem="false" />
+  <org.eventb.core.invariant name="invariant2" org.eventb.core.label="inv2" org.eventb.core.predicate="a_of_trans ∈ trans → account" org.eventb.core.theorem="false" />
+  <org.eventb.core.invariant name="invariant3" org.eventb.core.label="inv3" org.eventb.core.predicate="q_of_trans ∈ trans → 0‥c" org.eventb.core.theorem="false" />
+  <org.eventb.core.event name="event1" org.eventb.core.label="INITIALISATION" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.action name="action1" org.eventb.core.label="initTrans" org.eventb.core.assignment="trans ≔ ∅" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="initDest" org.eventb.core.assignment="a_of_trans ≔ ∅" />
+    <org.eventb.core.action name="action3" org.eventb.core.label="initAmount" org.eventb.core.assignment="q_of_trans ≔ ∅" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event2" org.eventb.core.label="open" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="open" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event3" org.eventb.core.label="close" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="close" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="noPendingCredit" org.eventb.core.predicate="a ∉ ran(a_of_trans)" org.eventb.core.theorem="false" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event4" org.eventb.core.label="deposit" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="deposit" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event5" org.eventb.core.label="withdraw" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="withdraw" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event6" org.eventb.core.label="move1" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="withdraw" />
+    <org.eventb.core.parameter name="parameter1" org.eventb.core.identifier="b" />
+    <org.eventb.core.parameter name="parameter2" org.eventb.core.identifier="t" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="destOpen" org.eventb.core.predicate="b ∈ account" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="distinct" org.eventb.core.predicate="b ≠ a" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="fresh" org.eventb.core.predicate="t ∈ T ∖ trans" org.eventb.core.theorem="false" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="recordTrans" org.eventb.core.assignment="trans ≔ trans ∪ {t}" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="recordDest" org.eventb.core.assignment="a_of_trans(t) ≔ b" />
+    <org.eventb.core.action name="action3" org.eventb.core.label="recordAmount" org.eventb.core.assignment="q_of_trans(t) ≔ q" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event7" org.eventb.core.label="move2" org.eventb.core.convergence="0" org.eventb.core.extended="false">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="deposit" />
+    <org.eventb.core.parameter name="parameter1" org.eventb.core.identifier="t" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="pending" org.eventb.core.predicate="t ∈ trans" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="destOpen" org.eventb.core.predicate="a_of_trans(t) ∈ account" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="amountOK" org.eventb.core.predicate="q_of_trans(t) ∈ 0‥c" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard4" org.eventb.core.label="room" org.eventb.core.predicate="balance(a_of_trans(t))+q_of_trans(t) ∈ 0‥c" org.eventb.core.theorem="false" />
+    <org.eventb.core.witness name="witness1" org.eventb.core.label="a" org.eventb.core.predicate="a = a_of_trans(t)" />
+    <org.eventb.core.witness name="witness2" org.eventb.core.label="q" org.eventb.core.predicate="q = q_of_trans(t)" />
+    <org.eventb.core.action name="action1" org.eventb.core.label="credit" org.eventb.core.assignment="balance(a_of_trans(t)) ≔ balance(a_of_trans(t))+q_of_trans(t)" />
+    <org.eventb.core.action name="action2" org.eventb.core.label="clearTrans" org.eventb.core.assignment="trans ≔ trans ∖ {t}" />
+    <org.eventb.core.action name="action3" org.eventb.core.label="clearDest" org.eventb.core.assignment="a_of_trans ≔ {t} ⩤ a_of_trans" />
+    <org.eventb.core.action name="action4" org.eventb.core.label="clearAmount" org.eventb.core.assignment="q_of_trans ≔ {t} ⩤ q_of_trans" />
+  </org.eventb.core.event>
+</org.eventb.core.machineFile>

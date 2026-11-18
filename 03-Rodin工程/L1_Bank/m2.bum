@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.eventb.core.machineFile version="5" org.eventb.core.configuration="org.eventb.core.fwd">
+  <org.eventb.core.refinesMachine name="refinesMachine1" org.eventb.core.target="m1" />
+  <org.eventb.core.seesContext name="seesContext1" org.eventb.core.target="c2" />
+  <org.eventb.core.variable name="variable1" org.eventb.core.identifier="account" />
+  <org.eventb.core.variable name="variable2" org.eventb.core.identifier="balance" />
+  <org.eventb.core.variable name="variable3" org.eventb.core.identifier="owner" />
+  <org.eventb.core.variable name="variable4" org.eventb.core.identifier="trans" />
+  <org.eventb.core.variable name="variable5" org.eventb.core.identifier="a_of_trans" />
+  <org.eventb.core.variable name="variable6" org.eventb.core.identifier="q_of_trans" />
+  <org.eventb.core.event name="event1" org.eventb.core.label="INITIALISATION" org.eventb.core.convergence="0" org.eventb.core.extended="true" />
+  <org.eventb.core.event name="event2" org.eventb.core.label="open" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="open" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event3" org.eventb.core.label="close" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="close" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event4" org.eventb.core.label="deposit" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="deposit" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event5" org.eventb.core.label="withdraw" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="withdraw" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event6" org.eventb.core.label="move1" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="move1" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event7" org.eventb.core.label="move2" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="move2" />
+  </org.eventb.core.event>
+  <org.eventb.core.event name="event8" org.eventb.core.label="save" org.eventb.core.convergence="0" org.eventb.core.extended="true">
+    <org.eventb.core.refinesEvent name="refinesEvent1" org.eventb.core.target="move1" />
+    <org.eventb.core.guard name="guard1" org.eventb.core.label="sourceNormal" org.eventb.core.predicate="a ∈ A ∖ savingsIds" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard2" org.eventb.core.label="targetSavings" org.eventb.core.predicate="b ∈ savingsIds" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard3" org.eventb.core.label="sameOwner" org.eventb.core.predicate="owner(a) = owner(b)" org.eventb.core.theorem="false" />
+    <org.eventb.core.guard name="guard4" org.eventb.core.label="positiveAmount" org.eventb.core.predicate="q &gt; 0" org.eventb.core.theorem="false" />
+  </org.eventb.core.event>
+</org.eventb.core.machineFile>
